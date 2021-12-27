@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b9023e1-c928-45ed-9296-6f560e292079" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Student.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/database.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/footer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/login.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/upload_assignment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/upload_quiz.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Loginstudent.html" beforeDir="false" afterPath="$PROJECT_DIR$/Loginstudent.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loginparents.html" beforeDir="false" afterPath="$PROJECT_DIR$/loginparents.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,15 +32,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\finalproject\app" />
       <recent name="C:\wamp64\www\finalproject" />
     </key>
   </component>
@@ -57,7 +56,13 @@
       <updated>1639774933289</updated>
       <workItem from="1639774934569" duration="79000" />
       <workItem from="1639813979007" duration="5817000" />
-      <workItem from="1639830662162" duration="7203000" />
+      <workItem from="1639830662162" duration="8361000" />
+      <workItem from="1640022864064" duration="3470000" />
+      <workItem from="1640188846070" duration="14000" />
+      <workItem from="1640348585228" duration="786000" />
+      <workItem from="1640413780988" duration="4226000" />
+      <workItem from="1640506639924" duration="16712000" />
+      <workItem from="1640579457053" duration="2676000" />
     </task>
     <servers />
   </component>

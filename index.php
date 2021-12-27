@@ -1,4 +1,5 @@
 <?php
+
 include __DIR__.'/app/database.php';
 include 'config.php';
 
@@ -8,19 +9,29 @@ $db_user = $config['database']['username'];
 $db_password = $config['database']['password'];
 
 $connect = db_connect($db_host,$db_name,$db_user,$db_password);
-$sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c  on c.id=uc.course_id WHERE u.id=1 and r.id=1";
-$student_courses = $connect->query($sql);
-//$student_courses= $student_courses->fetch_row();
-while ($r = $student_courses->fetch_assoc()){
+$sql="select * from user";
+$user = $connect->query($sql);
+$user=$user->fetch_assoc();
+//var_dump($user);die;
 
-}
-die;
-//var_dump($student_courses);die;
+$sql = "SELECT *,CASE WHEN uc.status=0 THEN 'Withdrawn' WHEN uc.status = 1 THEN 'Enrolled' end as course_status FROM user as u INNER JOIN role as r on u.role_id=r.id
+ INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.id=1 and r.id=1";
+$student_courses = $connect->query($sql);
+
+
 $sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id 
     INNER JOIN users_assignments as ua on ua.user_id=u.id 
     INNER JOIN  assignment as a  on a.id=ua.assignment_id WHERE u.id=1 and r.id=1";
 $student_assignments = $connect->query($sql);
-$student_assignments= $student_assignments->fetch_all();
+
+$sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id 
+    INNER JOIN user_quizzes as ua on ua.user_id=u.id 
+    INNER JOIN  quiz as a  on a.id=ua.quiz_id WHERE u.id=1 and r.id=1";
+$student_quizzes = $connect->query($sql);
+//while ($r = $student_quizzes->fetch_assoc()){
+//    var_dump($r);
+//}
+//die;
 //var_dump($student_courses);
 //die;
 include 'resources/index.php';
@@ -80,9 +91,10 @@ include 'resources/index.php';
             <p class="mb-0"><strong class="pr-1">Class:</strong>4</p>
             <p class="mb-0"><strong class="pr-1">Section:</strong>A</p>
               <div class="edit-profile">
-                  <ul>
-                      <li><a href="#">Edit picture</a></li>
-                  </ul>
+                  <form>
+                      <input type="file">
+                      <input type="submit" value="update picture">
+                  </form>
               </div>
           </div>
 
@@ -102,27 +114,17 @@ include 'resources/index.php';
               <tr>
                 <th width="30%">Roll</th>
                 <td width="2%">:</td>
-                <td>125</td>
+                <td><?php echo $user['user_id'] ?></td>
               </tr>
               <tr>
                 <th width="30%">Academic Year	</th>
                 <td width="2%">:</td>
-                <td>2020</td>
-              </tr>
-              <tr>
-                <th width="30%">Gender</th>
-                <td width="2%">:</td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <th width="30%">Religion</th>
-                <td width="2%">:</td>
-                <td>Group</td>
+                  <td><?php echo $user['academic_year'] ?></td>
               </tr>
               <tr>
                 <th width="30%">blood</th>
                 <td width="2%">:</td>
-                <td>B+</td>
+                  <td><?php echo $user['blood_group'] ?></td>
               </tr>
             </table>
           </div>
@@ -133,8 +135,10 @@ include 'resources/index.php';
             <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Other Information</h3>
           </div>
           <div class="card-body pt-0">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          </div>
+              <p>
+                  <?php echo $user['description'] ?>
+              </p>
+                </div>
         </div>
           <div style="height: 26px"></div>
           <div class="card shadow-sm">
@@ -147,21 +151,23 @@ include 'resources/index.php';
                           <th width="30%">Course Name</th>
                           <td width="2%">:</td>
                           <td>Course Code</td>
+                          <td>Course Status</td>
                       </thead>
                       <tbody>
                       <?php
-                      foreach ($student_courses as $key => $val){
-                          var_dump($val);
-                      ?>
-                          <tr>
-                              <th width="30%"><?php $val['name'] ?></th>
-                              <td width="2%">:</td>
-                              <td><?php $val['code'] ?></td>
-                          </tr>
-                      <?php
+
+                      while ($r = $student_courses->fetch_assoc()){
+                          ?>
+                      <tr>
+                          <th width="30%"><?php echo $r['name'] ?></th>
+                          <td width="2%">:</td>
+                          <td><?php echo $r['code'] ?></td>
+                          <td><?php echo $r['course_status'] ?></td>
+                      </tr>
+                          <?php
                       }
-                      die;
                       ?>
+
 
                       </tbody>
 
@@ -211,28 +217,41 @@ include 'resources/index.php';
                       <td width="2%">:</td>
                       <td>Status</td>
                       </thead>
+                      <?php
+                      while ($r = $student_assignments->fetch_assoc()){
+                      ?>
                       <tr>
-                          <th width="30%">Physics</th>
+                          <th width="30%"><?php echo $r['title'] ?></th>
                           <td width="2%">:</td>
-                          <td>A</td>
+                          <td><?php echo $r['grade'] ?></td>
                       </tr>
-                      <tr>
-                          <th width="30%">Assignment 1 </th>
-                          <td width="2%">:</td>
-                          <td></td>
-                      </tr>
-                      <tr>
-                          <th width="30%">Assignment 2</th>
-                          <td width="2%">:</td>
-                          <td>C</td>
-                      </tr>
+                      <?php
+                      }
+                      ?>
 
                   </table>
               </div>
               <div class="card-body pt-0">
-                  <form>
-                      <label>Upload Assignment</label>
-                      <input type="file">
+
+                  <form action="app/upload_assignment.php" method="post" enctype="multipart/form-data">
+                      <select name="course_id">
+                          <option selected>Select Course</option>
+                          <?php
+                          $sql = "SELECT *,CASE WHEN uc.status=0 THEN 'Withdrawn' WHEN uc.status = 1 THEN 'Enrolled' end as course_status FROM user as u INNER JOIN role as r on u.role_id=r.id
+ INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.id=1 and r.id=1";
+                          $student_courses = $connect->query($sql);
+                          while ($rr = $student_courses->fetch_assoc()){
+                              ?>
+                              <option value="<?php echo $rr['course_id'] ?>"><?php echo $rr['name'] ?></option>
+                              <?php
+                          }
+                          ?>
+
+                      </select>
+                      <br>
+<!--                      <label>Upload Assignment</label>-->
+                      <input name="assignment" type="file">
+                      <input type="submit" value="upload" name="submit">
                   </form>
               </div>
           </div>
@@ -248,23 +267,42 @@ include 'resources/index.php';
                       <td width="2%">:</td>
                       <td>Grade</td>
                       </thead>
-                      <tr>
-                          <th width="30%">Quiz 1</th>
-                          <td width="2%">:</td>
-                          <td>70%</td>
-                      </tr>
-                      <tr>
-                          <th width="30%">Quiz 2 </th>
-                          <td width="2%">:</td>
-                          <td>80%</td>
-                      </tr>
-                      <tr>
-                          <th width="30%">Quiz 3</th>
-                          <td width="2%">:</td>
-                          <td>70%</td>
-                      </tr>
+                      <?php
+                      while ($r = $student_quizzes->fetch_assoc()){
+                          ?>
+                          <tr>
+                              <th width="30%"><?php echo $r['title'] ?></th>
+                              <td width="2%">:</td>
+                              <td><?php echo $r['grade'] ?></td>
+                          </tr>
+                          <?php
+                      }
+                      ?>
 
                   </table>
+              </div>
+              <div class="card-body pt-0">
+
+                  <form action="app/upload_quiz.php" method="post" enctype="multipart/form-data">
+                      <select name="course_id">
+                          <option selected>Select Course</option>
+                          <?php
+                          $sql = "SELECT *,CASE WHEN uc.status=0 THEN 'Withdrawn' WHEN uc.status = 1 THEN 'Enrolled' end as course_status FROM user as u INNER JOIN role as r on u.role_id=r.id
+ INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.id=1 and r.id=1";
+                          $student_courses = $connect->query($sql);
+                          while ($rr = $student_courses->fetch_assoc()){
+                              ?>
+                              <option value="<?php echo $rr['course_id'] ?>"><?php echo $rr['name'] ?></option>
+                              <?php
+                          }
+                          ?>
+
+                      </select>
+                      <br>
+                      <!--                      <label>Upload Assignment</label>-->
+                      <input name="assignment" type="file">
+                      <input type="submit" value="upload" name="submit">
+                  </form>
               </div>
           </div>
       </div>

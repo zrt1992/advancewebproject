@@ -9,6 +9,8 @@ function isLogin(){
 //    include __DIR__ . '/../config.php';
     global $config;
     $connect = db_connect();
+//    unset($_COOKIE['PHPSESSID']);
+//    var_dump($_COOKIE['PHPSESSID']);die;
 
     if(isset($_COOKIE['PHPSESSID'])){
         $sql = "SELECT * FROM user WHERE session_id='".$_COOKIE['PHPSESSID']."' and (NOW()- session_created)<".$config['session_max_time'];
@@ -35,10 +37,12 @@ function login($username,$password){
         $result = $connect->query($sql);
         if ($result->num_rows > 0) {
             session_set_cookie_params($config['session_max_time']);
+//            session_set_cookie_params(1);
             session_start();
             $now = new DateTime();
             $now = $now->format('Y-m-d H:i:s');
-            $sql = "UPDATE user SET session_id='".session_id()."',session_created ='" . $now . "' WHERE username='" . $username . "' ";
+             $sql = "UPDATE user SET session_id='".session_id()."',session_created ='" . $now . "' WHERE username='" . $username . "' ";
+
             $connect->query($sql);
             return true;
 

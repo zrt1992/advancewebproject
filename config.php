@@ -7,5 +7,5 @@ return $config= [
         'username' => 'root',
         'password'=>'root'
     ],
-    'session_max_time'=>10
+    'session_max_time'=>5
 ];

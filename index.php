@@ -1,14 +1,7 @@
 <?php
 
 //include __DIR__.'/app/database.php';
-include __DIR__.'/app/login.php';
-include 'config.php';
-
-if(isLogin()){
-
-}else {
-    header("Location: http://autoload.test/finalproject/Loginstudent.php");
-}
+include __DIR__.'/app/login_status.php';
 
 
 $db_host = $config['database']['host'];

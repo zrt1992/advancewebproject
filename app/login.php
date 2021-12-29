@@ -6,10 +6,12 @@ ini_set('display_errors', 1);
 include __DIR__ . '/database.php';
 include __DIR__ . '/../config.php';
 function isLogin(){
+//    include __DIR__ . '/../config.php';
+    global $config;
     $connect = db_connect();
 
     if(isset($_COOKIE['PHPSESSID'])){
-        $sql = "SELECT * FROM user WHERE session_id='".$_COOKIE['PHPSESSID']."' and (NOW()- session_created)<3600";
+        $sql = "SELECT * FROM user WHERE session_id='".$_COOKIE['PHPSESSID']."' and (NOW()- session_created)<".$config['session_max_time'];
         $result = $connect->query($sql);
         if ($result->num_rows > 0) {
             $now = new DateTime();
@@ -27,12 +29,12 @@ function isLogin(){
 
 }
 function login($username,$password){
-
+     global $config;
         $connect = db_connect();
         $sql = "SELECT * FROM user WHERE username='$username' and password='$password'";
         $result = $connect->query($sql);
         if ($result->num_rows > 0) {
-            session_set_cookie_params(60);
+            session_set_cookie_params($config['session_max_time']);
             session_start();
             $now = new DateTime();
             $now = $now->format('Y-m-d H:i:s');

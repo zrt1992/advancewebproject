@@ -19,8 +19,8 @@ while ($r = $student_courses->fetch_assoc()){
 }
 die;
 //var_dump($student_courses);die;
-$sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id 
-    INNER JOIN users_assignments as ua on ua.user_id=u.id 
+$sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id
+    INNER JOIN users_assignments as ua on ua.user_id=u.id
     INNER JOIN  assignment as a  on a.id=ua.assignment_id WHERE u.id=1 and r.id=1";
 $student_assignments = $connect->query($sql);
 $student_assignments= $student_assignments->fetch_all();
@@ -43,7 +43,7 @@ include 'resources/index.php';
                 <li><a href="teachers.html" title="Back to tutorial page">Teachers</a></li>
                 <li><a href="assignment.html" title="Back to tutorial page">View assignments</a></li>
                 <li><a href="quiz.html" title="Back to tutorial page">View quizzz</a></li>
-                <li><a href="Loginstudent.html" title="Back to tutorial page">Login student</a></li>
+                <li><a href="Loginstudent.php" title="Back to tutorial page">Login student</a></li>
                 <li><a href="loginteacher.html" title="Back to tutorial page">Login teachers</a></li>
                 <li><a href="loginparents.html" title="Back to tutorial page">Login parents</a></li>
                 <li><a href="contactform.html" title="Back to tutorial page">Contact Form</a></li>

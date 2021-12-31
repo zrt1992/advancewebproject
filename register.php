@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Profile Page Design Example</title>
+    <title>Register</title>
 
     <meta name="author" content="Codeconvey" />
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
@@ -15,33 +15,15 @@
 </head>
 <body>
 
-<div class="ScriptTop">
-    <div class="rt-container">
-        <div class="col-rt-4" id="float-right">
-
-        </div>
-        <div class="col-rt-5">
-            <ul>
-
-                <li><a href="index.html" title="Back to tutorial page">Home</a></li>
-                <li><a href="parents.html" title="Back to tutorial page">parents</a></li>
-                <li><a href="teachers.html" title="Back to tutorial page">Teachers</a></li>
-                <li><a href="assignment.html" title="Back to tutorial page">View assignments</a></li>
-                <li><a href="quiz.html" title="Back to tutorial page">View quizzz</a></li>
-                <li><a href="Loginstudent.php" title="Back to tutorial page">Login student</a></li>
-                <li><a href="loginteacher.html" title="Back to tutorial page">Login teachers</a></li>
-                <li><a href="loginparents.html" title="Back to tutorial page">Login parents</a></li>
-                <li><a href="loginparents.html" title="Back to tutorial page">Contact Form</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+<?php
+include 'resources/header.php'
+?>
 
 <header class="ScriptHeader">
     <div class="rt-container">
     	<div class="col-rt-12">
         	<div class="rt-heading">
-            	<h1>Login Teacher </h1>
+            	<h1>Register </h1>
                 <p>Desscription</p>
             </div>
         </div>
@@ -61,26 +43,46 @@
       <div class="col-lg-12">
         <div class="card shadow-sm">
           <div class="card-header bg-transparent border-0">
-              <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Login Form</h3>
+              <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Contact Form</h3>
                        </div>
           <div class="card-body pt-0">
-              <form class="login-form">
+              <form action="app/register.php" class="login-form" method="POST">
                   <div class="col-rt-6">
 
-                      <label>User name</label>
-                      <input type="text">
+                      <label>Name</label>
+                      <input name="name" type="text">
+                  </div>
+                  <div class="col-rt-6">
+
+                      <label>Email</label>
+                      <input name="email" type="text">
                   </div>
                   <div class="col-rt-6">
 
                       <label>Password</label>
-                      <input type="password">
+                      <input name="password" type="password">
                   </div>
+                  <div class="col-rt-6">
+
+                      <label>Confirm Password</label>
+                      <input name="confirm_password" type="password">
+                  </div>
+                  <div class="col-rt-6">
+
+                      <label>Register as</label>
+                      <select name="role_id">
+                          <option value="1">Student</option>
+                          <option value="2">Teacher</option>
+                          <option value="3">Parent</option>
+                      </select>
+                  </div>
+
                   <div class="col-rt-6">
                       <br>
                   </div>
                   <div class="col-rt-6">
                       <label></label>
-                      <input type="submit" value="Login">
+                      <input type="submit" value="Submit">
                   </div>
               </form>
           </div>

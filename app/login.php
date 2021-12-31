@@ -6,15 +6,14 @@ ini_set('display_errors', 1);
 include __DIR__ . '/database.php';
 include __DIR__ . '/../config.php';
 function isLogin(){
-//    include __DIR__ . '/../config.php';
     global $config;
     $connect = db_connect();
-//    unset($_COOKIE['PHPSESSID']);
-//    var_dump($_COOKIE['PHPSESSID']);die;
+//    var_dump(($_COOKIE['PHPSESSID']));die;
 
     if(isset($_COOKIE['PHPSESSID'])){
         $sql = "SELECT * FROM user WHERE session_id='".$_COOKIE['PHPSESSID']."' and (NOW()- session_created)<".$config['session_max_time'];
         $result = $connect->query($sql);
+//        echo $sql;die;
         if ($result->num_rows > 0) {
             $now = new DateTime();
             $now = $now->format('Y-m-d H:i:s');
@@ -23,6 +22,8 @@ function isLogin(){
             $connect->query($sql);
             return true;
         } else {
+//            session_start();
+//            session_destroy();
             return false;
         }
     } else {
@@ -35,10 +36,13 @@ function login($username,$password){
         $connect = db_connect();
         $sql = "SELECT * FROM user WHERE username='$username' and password='$password'";
         $result = $connect->query($sql);
+//        var_dump($sql);die;
         if ($result->num_rows > 0) {
-            session_set_cookie_params($config['session_max_time']);
 //            session_set_cookie_params(1);
+            session_set_cookie_params($config['session_max_time']);
             session_start();
+            session_regenerate_id(TRUE);
+//            var_dump(session_id());die;
             $now = new DateTime();
             $now = $now->format('Y-m-d H:i:s');
              $sql = "UPDATE user SET session_id='".session_id()."',session_created ='" . $now . "' WHERE username='" . $username . "' ";

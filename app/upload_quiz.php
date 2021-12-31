@@ -55,6 +55,7 @@ $result = $connect->query($sql);
 $last_inserted_id = $connect->insert_id;
 $sql="insert INTO user_quizzes (`id`, `user_id`, `quiz_id`, `grade`) VALUES (NULL ,1,$last_inserted_id,NULL)";
 $result = $connect->query($sql);
+header("Location: ".url());
 //die;
 //var_dump($sql);die;
 

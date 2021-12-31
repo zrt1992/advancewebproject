@@ -1,7 +1,13 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 //include __DIR__.'/app/database.php';
 include __DIR__.'/app/login_status.php';
+include __DIR__.'/app/user.php';
+var_dump(getuser());
+
+
 
 
 $db_host = $config['database']['host'];
@@ -14,6 +20,7 @@ $sql="select * from user";
 $user = $connect->query($sql);
 $user=$user->fetch_assoc();
 //var_dump($user);die;
+
 
 $sql = "SELECT *,CASE WHEN uc.status=0 THEN 'Withdrawn' WHEN uc.status = 1 THEN 'Enrolled' end as course_status FROM user as u INNER JOIN role as r on u.role_id=r.id
  INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.id=1 and r.id=1";
@@ -38,28 +45,10 @@ $student_quizzes = $connect->query($sql);
 include 'resources/index.php';
 ?>
 <body>
-<div class="ScriptTop">
-    <div class="rt-container">
-        <div class="col-rt-4" id="float-right">
+<?php
+include 'resources/header.php';
+?>
 
-            <!-- Ad Here -->
-
-        </div>
-        <div class="col-rt-5">
-            <ul>
-                <li><a href="index.html" title="Back to tutorial page">Home</a></li>
-                <li><a href="parents.html" title="Back to tutorial page">parents</a></li>
-                <li><a href="teachers.html" title="Back to tutorial page">Teachers</a></li>
-                <li><a href="assignment.html" title="Back to tutorial page">View assignments</a></li>
-                <li><a href="quiz.html" title="Back to tutorial page">View quizzz</a></li>
-                <li><a href="Loginstudent.php" title="Back to tutorial page">Login student</a></li>
-                <li><a href="loginteacher.html" title="Back to tutorial page">Login teachers</a></li>
-                <li><a href="loginparents.html" title="Back to tutorial page">Login parents</a></li>
-                <li><a href="contactform.html" title="Back to tutorial page">Contact Form</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
 
 <header class="ScriptHeader">
     <div class="rt-container">

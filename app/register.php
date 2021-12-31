@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 
 include __DIR__ . '/database.php';
 include __DIR__ . '/../config.php';
+include __DIR__ . '/../app/baseurl.php';
 
 //var_dump($_REQUEST);die;
 $name = $_REQUEST['name'];
@@ -26,9 +27,9 @@ if($role_id==2){
 $connect = db_connect();
 $sql = "INSERT INTO user (id, username, password, session_id, session_created, gender, name, user_id, academic_year, profile_pic, description, age, blood_group, role_id) VALUES (NULL, '$email', '$password', NULL, CURRENT_TIMESTAMP, NULL, '', '$roll_num', NULL, NULL, NULL, NULL, NULL, '$role_id')";
 $result = $connect->query($sql);
-
+//var_dump(url());die;
 if($result){
-    header("Location: http://autoload.test/finalproject/loginparents.html");
+    header("Location: ".url());
 } else {
     echo 'register failed';
 }

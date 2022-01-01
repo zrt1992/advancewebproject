@@ -1,10 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-//phpinfo();
-include __DIR__ . '/database.php';
-include __DIR__ . '/../config.php';
+//include 'dependencies.php';
 function isLogin(){
     global $config;
     $connect = db_connect();

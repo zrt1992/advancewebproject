@@ -1,5 +1,5 @@
 <?php
-
+//var_dump($_COOKIE['PHPSESSID']);die;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include __DIR__.'/app/dependencies.php';
@@ -12,18 +12,19 @@ $user=getuser();
 
 
 $sql = "SELECT *,CASE WHEN uc.status=0 THEN 'Withdrawn' WHEN uc.status = 1 THEN 'Enrolled' end as course_status FROM user as u INNER JOIN role as r on u.role_id=r.id
- INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.id=1 and r.id=1";
+ INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.username='".$user['username']."'";
+echo $sql;die;
 $student_courses = $connect->query($sql);
 
 
 $sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id
     INNER JOIN users_assignments as ua on ua.user_id=u.id
-    INNER JOIN  assignment as a  on a.id=ua.assignment_id WHERE u.id=1 and r.id=1";
+    INNER JOIN  assignment as a  on a.id=ua.assignment_id WHERE u.id=1 and r.id=2";
 $student_assignments = $connect->query($sql);
 
 $sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id
     INNER JOIN user_quizzes as ua on ua.user_id=u.id
-    INNER JOIN  quiz as a  on a.id=ua.quiz_id WHERE u.id=1 and r.id=1";
+    INNER JOIN  quiz as a  on a.id=ua.quiz_id WHERE u.id=1 and r.id=2";
 $student_quizzes = $connect->query($sql);
 //while ($r = $student_quizzes->fetch_assoc()){
 //    var_dump($r);
@@ -217,7 +218,7 @@ include 'resources/header.php';
                           <option selected>Select Course</option>
                           <?php
                           $sql = "SELECT *,CASE WHEN uc.status=0 THEN 'Withdrawn' WHEN uc.status = 1 THEN 'Enrolled' end as course_status FROM user as u INNER JOIN role as r on u.role_id=r.id
- INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.id=1 and r.id=1";
+ INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.id=1 and r.id=2";
                           $student_courses = $connect->query($sql);
                           while ($rr = $student_courses->fetch_assoc()){
                               ?>
@@ -267,7 +268,7 @@ include 'resources/header.php';
                           <option selected>Select Course</option>
                           <?php
                           $sql = "SELECT *,CASE WHEN uc.status=0 THEN 'Withdrawn' WHEN uc.status = 1 THEN 'Enrolled' end as course_status FROM user as u INNER JOIN role as r on u.role_id=r.id
- INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.id=1 and r.id=1";
+ INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.id=1 and r.id=2";
                           $student_courses = $connect->query($sql);
                           while ($rr = $student_courses->fetch_assoc()){
                               ?>

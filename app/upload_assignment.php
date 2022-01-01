@@ -1,7 +1,8 @@
 <?php
 
-include __DIR__.'/../app/database.php';
-include __DIR__.'/../config.php';
+//include __DIR__.'/../app/database.php';
+//include __DIR__.'/../config.php';
+include __DIR__.'/dependencies.php';
 
 $db_host = $config['database']['host'];
 $db_name = $config['database']['name'];

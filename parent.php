@@ -8,11 +8,11 @@ include __DIR__.'/app/login_status.php';
 
 $connect = db_connect();
 $user=getuser();
-//var_dump($user);die;
 
 
 $sql = "SELECT *,CASE WHEN uc.status=0 THEN 'Withdrawn' WHEN uc.status = 1 THEN 'Enrolled' end as course_status FROM user as u INNER JOIN role as r on u.role_id=r.id
  INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.id=1 and r.id=1";
+//var_dump($sql);die;
 $student_courses = $connect->query($sql);
 
 
@@ -122,7 +122,7 @@ include 'resources/header.php';
           <div style="height: 26px"></div>
           <div class="card shadow-sm">
               <div class="card-header bg-transparent border-0">
-                  <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Courses</h3>
+                  <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Assigned Courses</h3>
               </div>
               <div class="card-body pt-0">
                   <table class="table table-bordered">

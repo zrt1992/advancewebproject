@@ -1,44 +1,14 @@
 <?php
 
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-//include __DIR__.'/app/database.php';
+include __DIR__.'/app/dependencies.php';
 include __DIR__.'/app/login_status.php';
 
 
-
-
-$db_host = $config['database']['host'];
-$db_name = $config['database']['name'];
-$db_user = $config['database']['username'];
-$db_password = $config['database']['password'];
-
-$connect = db_connect($db_host,$db_name,$db_user,$db_password);
-$sql="select * from user";
-$user = $connect->query($sql);
-$user=$user->fetch_assoc();
-//$sql = "select * from users as u inner join ro ";
-
-$sql = "SELECT *,CASE WHEN uc.status=0 THEN 'Withdrawn' WHEN uc.status = 1 THEN 'Enrolled' end as course_status FROM user as u INNER JOIN role as r on u.role_id=r.id
- INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.id=1 and r.id=1";
-$student_courses = $connect->query($sql);
-
-
-$sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id
-    INNER JOIN users_assignments as ua on ua.user_id=u.id
-    INNER JOIN  assignment as a  on a.id=ua.assignment_id WHERE u.id=1 and r.id=1";
-$student_assignments = $connect->query($sql);
-
-$sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id
-    INNER JOIN user_quizzes as ua on ua.user_id=u.id
-    INNER JOIN  quiz as a  on a.id=ua.quiz_id WHERE u.id=1 and r.id=1";
-$student_quizzes = $connect->query($sql);
-//while ($r = $student_quizzes->fetch_assoc()){
-//    var_dump($r);
-//}
-//die;
-//var_dump($student_courses);
-//die;
+$connect = db_connect();
+$user=getuser();
 include 'resources/index.php';
 ?>
 <body>

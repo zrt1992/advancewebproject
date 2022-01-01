@@ -1,11 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-//phpinfo();
-include __DIR__ . '/database.php';
-include __DIR__ . '/../config.php';
-include 'baseurl.php';
+include 'dependencies.php';
 function logout(){
     global $config;
     $connect = db_connect();
@@ -23,10 +19,12 @@ function logout(){
             header("Location: ".url());
         }
     } else {
-        return false;
+        header("Location: ".url());
     }
-
+    header("Location: ".url());
 }
+//var_dump("Location: ".url());die;
+
 logout();
 
 

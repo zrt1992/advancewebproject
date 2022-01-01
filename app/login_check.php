@@ -1,11 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include 'baseurl.php';
-
-
-//phpinfo();
-include __DIR__ . '/login.php';
+include 'dependencies.php';
 $username = $_REQUEST['username'];
 $password = $_REQUEST['password'];
 //echo "Location: ".url();die;

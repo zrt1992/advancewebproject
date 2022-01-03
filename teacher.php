@@ -8,12 +8,12 @@ include __DIR__.'/app/login_status.php';
 
 $connect = db_connect();
 $user=getuser();
-//var_dump($user);die;
+//var_dump($user,$config);
 
 
-$sql = "SELECT *,CASE WHEN uc.status=0 THEN 'Withdrawn' WHEN uc.status = 1 THEN 'Enrolled' end as course_status FROM user as u INNER JOIN role as r on u.role_id=r.id
- INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.username='".$user['username']."'";
-echo $sql;die;
+$sql = "SELECT *, CASE WHEN uc.status=0 THEN 'Withdrawn' WHEN uc.status = 1 THEN 'Enrolled' end as course_status FROM users_courses as uc INNER JOIN user as u on u.id=uc.user_id inner join course as c on c.id=uc.course_id
+WHERE uc.course_id IN (SELECT course_id FROM `users_courses` where user_id='".$user['userid']."') and u.id!='".$user['userid']."'";
+//echo $sql;die;
 $student_courses = $connect->query($sql);
 
 

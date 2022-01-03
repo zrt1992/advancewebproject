@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b9023e1-c928-45ed-9296-6f560e292079" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/dependencies.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/parent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/student_profile.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/teacher.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/teacher_profile.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/baseurl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/baseurl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/login_check.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/login_check.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/login_status.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/login_status.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/logout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/upload_assignment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/upload_assignment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/parent_profile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +77,7 @@
       <workItem from="1640923137643" duration="11930000" />
       <workItem from="1640945234280" duration="3388000" />
       <workItem from="1640948732218" duration="13266000" />
-      <workItem from="1641067308669" duration="250000" />
+      <workItem from="1641067308669" duration="3216000" />
     </task>
     <servers />
   </component>

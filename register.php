@@ -15,9 +15,7 @@
 </head>
 <body>
 
-<?php
-include 'resources/header.php'
-?>
+
 
 <header class="ScriptHeader">
     <div class="rt-container">

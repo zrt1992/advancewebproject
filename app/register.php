@@ -25,13 +25,16 @@ if($role_id==2){
 
 
 $connect = db_connect();
-$sql = "INSERT INTO user (id, username, password, session_id, session_created, gender, name, user_id, academic_year, profile_pic, description, age, blood_group, role_id) VALUES (NULL, '$email', '$password', NULL, CURRENT_TIMESTAMP, NULL, '', '$roll_num', NULL, NULL, NULL, NULL, NULL, '$role_id')";
+$sql = "INSERT INTO user (id, username, password, session_id, session_created, gender, 
+                  name, user_id, academic_year, profile_pic, description, age, blood_group, role_id) 
+                  VALUES (NULL, '$email', '$password', NULL, CURRENT_TIMESTAMP, NULL, '', '$roll_num', 
+                          NULL, NULL, NULL, NULL, NULL, '$role_id')";
 $result = $connect->query($sql);
 //var_dump(url());die;
 if($result){
-    header("Location: ".url());
+    header("Location: ".url()."index.php");
 } else {
-    echo 'register failed';
+//    echo 'register failed';
 }
 
 

@@ -8,8 +8,10 @@ $db_host = $config['database']['host'];
 $db_name = $config['database']['name'];
 $db_user = $config['database']['username'];
 $db_password = $config['database']['password'];
+$user_id = $_POST['user_id'];
 $course_id = $_POST['course_id'];
-//var_dump($_POST);die;
+$user = getuser();
+//var_dump(getuser());die;
 
 //var_dump(basename($_FILES["assignment"]["name"]));die;
 $connect = db_connect($db_host,$db_name,$db_user,$db_password);
@@ -54,9 +56,10 @@ $sql="insert INTO assignment (`id`, `title`, `course_id`, `path`) VALUES (NULL,'
 
 $result = $connect->query($sql);
 $last_inserted_id = $connect->insert_id;
-$sql="insert INTO users_assignments (`id`, `user_id`, `assignment_id`, `grade`) VALUES (NULL ,1,$last_inserted_id,NULL)";
+$sql="insert INTO users_assignments (`id`, `user_id`, `assignment_id`, `grade`) VALUES (NULL ,$user_id,$last_inserted_id,NULL)";
 $result = $connect->query($sql);
-header("Location: ".url());
+if($user['roll']=="teacher")  header("Location: ".url()."teacher.php");
+if($user['roll']=="student")  header("Location: ".url()."index.php");
 //die;
 //var_dump($sql);die;
 

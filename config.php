@@ -7,6 +7,6 @@ return $config= [
         'username' => 'root',
         'password'=>'root'
     ],
-    'session_max_time'=>3600,
+    'session_max_time'=>360000,
     'base_url'=>'finalproject.test'
 ];

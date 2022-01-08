@@ -32,7 +32,7 @@ function login($username,$password){
      global $config;
         $connect = db_connect();
         $sql = "SELECT * FROM user WHERE username='$username' and password='$password'";
-        $result = $connect->query($sql);
+        $result = $connect->query($sql); //execute the query
 //        var_dump($sql);die;
         if ($result->num_rows > 0) {
 //            session_set_cookie_params(1);

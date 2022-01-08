@@ -4,16 +4,14 @@ include 'resources/index.php';
 ?>
 <body>
 
-<?php
-include 'resources/header.php'
-?>
+
 
 <header class="ScriptHeader">
     <div class="rt-container">
     	<div class="col-rt-12">
         	<div class="rt-heading">
-            	<h1>Login Students </h1>
-                <p>Desscription</p>
+            	<h1>Login  </h1>
+                <p>Enter you login details here</p>
             </div>
         </div>
     </div>
@@ -55,7 +53,7 @@ include 'resources/header.php'
                   </div>
               </form>
               <div class="col-rt-6">
-                  <label><a href="register.html">Register</a></label>
+                  <label><a href="register.php">Register</a></label>
 
               </div>
           </div>

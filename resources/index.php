@@ -1,3 +1,7 @@
+<?php
+//include __DIR__.'/../app/user.php';
+//var_dump(getuser());die;
+?>
 <!DOCTYPE html>
 <!--specifiying that the document is html-->
 <html lang="en">

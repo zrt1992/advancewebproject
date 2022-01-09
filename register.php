@@ -72,6 +72,7 @@
                           <option value="1">Student</option>
                           <option value="2">Teacher</option>
                           <option value="3">Parent</option>
+                          <option value="4">Admin</option>
                       </select>
                   </div>
 

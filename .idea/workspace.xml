@@ -5,23 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b9023e1-c928-45ed-9296-6f560e292079" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/profile_pic.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/update_profile.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/update_profile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/enroll.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/grade_assignment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grade_students.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Loginstudent.php" beforeDir="false" afterPath="$PROJECT_DIR$/Loginstudent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/login_check.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/login_check.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/login_status.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/login_status.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/register.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/upload_assignment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/upload_assignment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/upload_quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/upload_quiz.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/demo.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +48,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -68,7 +59,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\finalproject" />
       <recent name="C:\wamp64\www\finalproject\app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\finalproject" />
     </key>
   </component>
@@ -97,7 +91,8 @@
       <workItem from="1641244229249" duration="593000" />
       <workItem from="1641397199131" duration="3948000" />
       <workItem from="1641472055408" duration="11698000" />
-      <workItem from="1641626322725" duration="23550000" />
+      <workItem from="1641626322725" duration="27566000" />
+      <workItem from="1641703729654" duration="8022000" />
     </task>
     <servers />
   </component>

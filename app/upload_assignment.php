@@ -57,6 +57,7 @@ $sql="insert INTO assignment (`id`, `title`, `course_id`, `path`) VALUES (NULL,'
 $result = $connect->query($sql);
 $last_inserted_id = $connect->insert_id;
 $sql="insert INTO users_assignments (`id`, `user_id`, `assignment_id`, `grade`) VALUES (NULL ,$user_id,$last_inserted_id,NULL)";
+//var_dump($sql);die;
 $result = $connect->query($sql);
 if($user['roll']=="teacher")  header("Location: ".url()."teacher.php");
 if($user['roll']=="student")  header("Location: ".url()."index.php");

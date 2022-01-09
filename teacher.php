@@ -21,11 +21,22 @@ WHERE uc.course_id IN (SELECT course_id FROM `users_courses` where user_id='".$u
 //echo $sql;die;
 $course_students = $connect->query($sql);
 
-$sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id
+$sql = "SELECT *,a.id as assignment_id FROM user as u INNER JOIN role as r on u.role_id=r.id
     INNER JOIN users_assignments as ua on ua.user_id=u.id
     INNER JOIN  assignment as a  on a.id=ua.assignment_id WHERE u.id='".$user['userid']."' and r.id='".$user['role_id']."'";//role_id
-//var_dump($sql);die;
+
+$uploaded_assignments = $connect->query($sql);
+
+$sql = "SELECT *,a.id as assignment_id,u.name as user_name FROM user as u INNER JOIN role as r on u.role_id=r.id
+    INNER JOIN users_assignments as ua on ua.user_id=u.id
+    INNER JOIN  assignment as a  on a.id=ua.assignment_id WHERE u.id='".$user['userid']."' and r.id='".$user['role_id']."'";//role_id
+
+//echo $sql;die;
 $student_assignments = $connect->query($sql);
+
+
+$sql = "select * from course";
+$all_courses = $connect->query($sql);
 
 $sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id
     INNER JOIN user_quizzes as ua on ua.user_id=u.id
@@ -40,9 +51,23 @@ $student_quizzes = $connect->query($sql);
 include 'resources/index.php'; // to avoid duplication
 ?>
 <body>
-<?php
-include 'resources/header.php'; // to avoid duplication
-?>
+<div class="ScriptTop">
+    <div class="rt-container">
+        <div class="col-rt-4" id="float-right">
+
+            <!-- Ad Here -->
+
+        </div>
+        <div class="col-rt-5">
+            <ul>
+                <li><a href="index.php" title="Back to tutorial page">Home</a></li>
+                <li><a href="contactform.php" title="Back to tutorial page">Contact Form</a></li>
+                <li><a href="app/logout.php" title="Back to tutorial page">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 
 
 <header class="ScriptHeader">
@@ -120,78 +145,82 @@ include 'resources/header.php'; // to avoid duplication
           <div style="height: 26px"></div>
 
           <div style="height: 26px"></div>
-<!--          <div class="card shadow-sm">-->
-<!--              <div class="card-header bg-transparent border-0">-->
-<!--                  <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Student Grades</h3>-->
-<!--              </div>-->
-<!--              <div class="card-body pt-0">-->
-<!--                  <table class="table table-bordered">-->
-<!--                      <thead>-->
-<!--                          <th width="30%">Student Name</th>-->
-<!--                          <th width="30%">Course Name</th>-->
-<!--                          <td width="2%">:</td>-->
-<!--                          <td>Course Code</td>-->
-<!--                          <td>Course Status</td>-->
-<!--                          <td>Student Grade</td>-->
-<!--                      </thead>-->
-<!--                      <tbody>-->
-<!--                      --><?php
-//
-//                      while ($r = $course_students->fetch_assoc()){
-//                          ?>
-<!--                      <tr>-->
-<!--                          <th width="30%">--><?php //echo $r['student_name'] ?><!--</th>-->
-<!--                          <th width="30%">--><?php //echo $r['name'] ?><!--</th>-->
-<!--                          <td width="2%">:</td>-->
-<!--                          <td>--><?php //echo $r['code'] ?><!--</td>-->
-<!--                          <td>--><?php //echo $r['course_status'] ?><!--</td>-->
-<!--                          <td>--><?php //echo $r['grade'] ?><!--</td>-->
-<!--                      </tr>-->
-<!--                          --><?php
-//                      }
-//                      ?>
-<!---->
-<!---->
-<!--                      </tbody>-->
-<!---->
-<!--                  </table>-->
-<!--              </div>-->
-<!--          </div>-->
-          <div style="height: 26px"></div>
-<!--          <div class="card shadow-sm">-->
-<!--              <div class="card-header bg-transparent border-0">-->
-<!--                  <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Grades</h3>-->
-<!--              </div>-->
-<!--              <div class="card-body pt-0">-->
-<!--                  <table class="table table-bordered">-->
-<!--                      <thead>-->
-<!--                      <th width="30%">Course Name</th>-->
-<!--                      <td width="2%">:</td>-->
-<!--                      <td>Grade</td>-->
-<!--                      </thead>-->
-<!--                      <tr>-->
-<!--                          <th width="30%">Physics</th>-->
-<!--                          <td width="2%">:</td>-->
-<!--                          <td>A</td>-->
-<!--                      </tr>-->
-<!--                      <tr>-->
-<!--                          <th width="30%">Computer science</th>-->
-<!--                          <td width="2%">:</td>-->
-<!--                          <td>B</td>-->
-<!--                      </tr>-->
-<!--                      <tr>-->
-<!--                          <th width="30%">Humanities</th>-->
-<!--                          <td width="2%">:</td>-->
-<!--                          <td>C</td>-->
-<!--                      </tr>-->
-<!---->
-<!--                  </table>-->
-<!--              </div>-->
-<!--          </div>-->
+          <div class="card shadow-sm">
+              <div class="card-header bg-transparent border-0">
+                  <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Student Course Grades</h3>
+              </div>
+              <div class="card-body pt-0">
+                  <table class="table table-bordered">
+                      <thead>
+                          <th width="30%">Student Name</th>
+                          <th width="30%">Course Name</th>
+                          <td width="2%">:</td>
+                          <td>Course Code</td>
+                          <td>Course Status</td>
+                          <td>Student Grade</td>
+                      </thead>
+                      <tbody>
+                      <?php
+
+                      while ($r = $course_students->fetch_assoc()){
+                          ?>
+                      <tr>
+                          <th width="30%"><?php echo $r['student_name'] ?></th>
+                          <th width="30%"><?php echo $r['name'] ?></th>
+                          <td width="2%">:</td>
+                          <td><?php echo $r['code'] ?></td>
+                          <td><?php echo $r['course_status'] ?></td>
+                          <td><?php echo $r['grade'] ?></td>
+                      </tr>
+                          <?php
+                      }
+                      ?>
+
+
+                      </tbody>
+
+                  </table>
+              </div>
+          </div>
           <div style="height: 26px"></div>
           <div class="card shadow-sm">
               <div class="card-header bg-transparent border-0">
-                  <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Assignments</h3>
+                  <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Student Assignments Grades</h3>
+              </div>
+              <div class="card-body pt-0">
+                  <table class="table table-bordered">
+                      <thead>
+                      <th width="30%">Student Name</th>
+                      <th width="30%">Course Name</th>
+                      <td width="2%">:</td>
+                      <td>Assignment Grade</td>
+                      </thead>
+                      <tbody>
+                      <?php
+
+                      while ($r = $student_assignments->fetch_assoc()){
+                          ?>
+                          <tr>
+                              <th width="30%"><?php echo $r['user_name'] ?></th>
+                              <th width="30%"><?php echo $r['title'] ?></th>
+                              <td width="2%">:</td>
+                              <td><?php echo $r['grade'] ?></td>
+                          </tr>
+                          <?php
+                      }
+                      ?>
+
+
+                      </tbody>
+
+                  </table>
+              </div>
+          </div>
+
+          <div style="height: 26px"></div>
+          <div class="card shadow-sm">
+              <div class="card-header bg-transparent border-0">
+                  <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Uploaded Assignments</h3>
               </div>
               <div class="card-body pt-0">
                   <table class="table table-bordered">
@@ -201,12 +230,13 @@ include 'resources/header.php'; // to avoid duplication
                       <td>Status</td>
                       </thead>
                       <?php
-                      while ($r = $student_assignments->fetch_assoc()){
+                      while ($r = $uploaded_assignments->fetch_assoc()){
+//                          var_dump($r);die;
                       ?>
                       <tr>
                           <th width="30%"><?php echo $r['title'] ?></th>
                           <td width="2%">:</td>
-                          <td><?php echo $r['grade'] ?></td>
+                          <td><a href="grade_students.php?assignment_id=<?php echo $r['assignment_id'] ?>">Grade Students</a></td>
                       </tr>
                       <?php
                       }
@@ -218,7 +248,7 @@ include 'resources/header.php'; // to avoid duplication
 
                   <form action="app/upload_assignment.php" method="post" enctype="multipart/form-data">
                       <select name="course_id">
-                          <option selected>Select Course</option>
+                          <option selected>Select Courses</option>
                           <?php
                           $sql = "SELECT *,u.id as user_id,u.role_id as user_role_id,CASE WHEN uc.status=0 THEN 'Withdrawn' WHEN uc.status = 1 THEN 'Enrolled' end as course_status FROM user as u INNER JOIN role as r on u.role_id=r.id
  INNER JOIN users_courses as uc on uc.user_id=u.id INNER JOIN course as c on c.id=uc.course_id WHERE u.id='".$user['userid']."' and r.id='".$user['role_id']."'";

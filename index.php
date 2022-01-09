@@ -22,12 +22,12 @@ $student_courses = $connect->query($sql);
 
 $sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id
     INNER JOIN users_assignments as ua on ua.user_id=u.id
-    INNER JOIN  assignment as a  on a.id=ua.assignment_id WHERE u.id=1 and r.id=1";
+    INNER JOIN  assignment as a  on a.id=ua.assignment_id WHERE u.id='".$user['userid']."' and r.id=1";
 $student_assignments = $connect->query($sql);
 
 $sql = "SELECT * FROM user as u INNER JOIN role as r on u.role_id=r.id
     INNER JOIN user_quizzes as ua on ua.user_id=u.id
-    INNER JOIN  quiz as a  on a.id=ua.quiz_id WHERE u.id=1 and r.id=1";
+    INNER JOIN  quiz as a  on a.id=ua.quiz_id WHERE u.id='".$user['userid']."' and r.id=1";
 $student_quizzes = $connect->query($sql);
 
 $sql = "SELECT * FROM course WHERE id NOT IN (SELECT course_id FROM `users_courses` where user_id='".$user['userid']."')";
@@ -191,7 +191,8 @@ include 'resources/index.php' //added  to avoid duplication
                               <th width="30%"><?php echo $r['name'] ?></th>
                               <td width="2%">:</td>
                               <td><?php echo $r['code'] ?></td>
-                              <td></td>
+                              <td>Not Enrolled</td>
+                              <td><a href="app/enroll.php?user_id=<?php echo $user['userid'] ?>&course_id=<?php echo $r['id'] ?>">Enrolled</a></td>
                           </tr>
                           <?php
                       }
@@ -279,6 +280,7 @@ include 'resources/index.php' //added  to avoid duplication
 
                       </select>
                       <br>
+                      <input type="hidden" type="text" name="user_id" value="<?php echo $user['userid'] ?>">
 <!--                      <label>Upload Assignment</label>-->
                       <input name="assignment" type="file">
                       <input type="submit" value="upload" name="submit">
